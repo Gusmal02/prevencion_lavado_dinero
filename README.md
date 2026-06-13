@@ -3,51 +3,57 @@
 ## English Version
 
 ### Project Overview
-This project implements an advanced Anti-Money Laundering (AML) and Counter-Financing of Terrorism (CFT) transaction monitoring pipeline. By combining traditional rule-based compliance systems with unsupervised machine learning (K-Means Clustering), this solution optimizes financial auditing workflows. It significantly reduces false positives, isolates anomalous behavioral profiles, and provides an interactive executive dashboard for operational decision-making.
+This project implements a production-ready Anti-Money Laundering (AML) and Counter-Financing of Terrorism (CFT) transaction monitoring pipeline. By combining traditional rule-based compliance elements with unsupervised machine learning (K-Means Clustering), this solution optimizes financial auditing workflows, reduces false positives, isolates anomalous behavioral profiles, and provides automated testing and infrastructure deployment under a DevSecOps approach.
 
 ### Problem Statement
-Traditional transaction monitoring systems (such as the legacy SICENA framework) generate high volumes of alerts based on rigid, static thresholds. This approach results in an overwhelming number of false positives, causing operational fatigue for compliance analysts and delaying the identification of complex financial crimes such as structuring (smurfing).
+Traditional transaction monitoring systems generate high volumes of alerts based on rigid, static thresholds. This approach results in an overwhelming number of false positives, causing operational fatigue for compliance analysts and delaying the identification of complex financial crimes such as structuring (smurfing).
 
 ### Solution Architecture
-The pipeline is structured into three continuous layers:
-1. **Rule-Based Ingestion:** Simulates transaction ingestion and triggers preliminary alerts based on regulatory thresholds.
-2. **Analytical Optimization (Machine Learning):** Applies an unsupervised K-Means algorithm in Python to analyze behavioral inconsistencies (cash discrepancies, transactional velocity, and declared monthly income), segmenting users into specialized risk profiles.
-3. **Executive Visualization & Audit Ledger:** An interactive Power BI dashboard connected directly to the pipeline's output, allowing the Compliance Officer to filter data dynamically by cluster and audit specific client profiles.
+The pipeline is structured into four continuous layers:
+1. **Rule-Based Ingestion:** Validates schema integrity and processes transaccional inputs.
+2. **Analytical Optimization (Machine Learning):** Applies an unsupervised K-Means algorithm via Scikit-Learn to evaluate behavioral inconsistencies (cash discrepancies, transactional velocity, and declared monthly income), segmenting users into specialized risk profiles.
+3. **Automated Hardening & DevSecOps:** Integrated automated testing with Python's `unittest` framework to guarantee mathematical consistency (mitigating zero-division errors) and continuous validation via GitHub Actions.
+4. **Infrastructure as Code (IaC):** Declarative configuration using Terraform to provision secure, encrypted cloud storage (AWS S3) for data lake architecture.
 
 ### Key Metrics and Business Impact
-* **False Positive Reduction:** Operational alerts requiring urgent manual review were reduced from the initial batch down to 492 prioritized cases, optimizing analyst efficiency.
-* **Capital Under Investigation:** Successfully isolated and tracked 188 million MXN across anomalous clusters.
-* **Risk Concentration:** Identified high-risk clusters (such as Cluster 4), exposing specific profiles (e.g., students or unemployed individuals) executing structural cash deposits near regulatory limits, totaling over 41 million MXN.
+* **False Positive Optimization:** Operational alerts requiring urgent manual review were reduced and isolated down to **577 prioritized cases** (Cluster 4), maximizing analyst efficiency.
+* **Robust Behavioral Segmentation:** Successfully mapped structural cash deposits executing transactions near regulatory limits, protecting operational integrity.
 
 ### Repository Structure
-* `data/`: Contains synthetic transactional datasets and Know Your Customer (KYC) records.
-* `notebooks/`: Jupyter Notebook containing the Exploratory Data Analysis (EDA) and K-Means model training.
-* `src/`: Modular Python scripts for data cleaning, engineering, and cluster assignment.
-* `dashboard/`: Power BI Desktop file (.pbix) containing the interactive auditing dashboard.
+* `.github/workflows/`: Contains `devsecops_pipeline.yml` for automated CI/CD testing and security scanning (Bandit).
+* `data_sintetica/`: Contains synthetic transactional datasets, KYC records, and exported analytical results (`.csv`) along with serialized model artifacts (`scaler.pkl`, `kmeans_model.pkl`).
+* `graficas/`: Contains visualization deliverables and control desk resources (`Mesa_Control_PLD.pbix`).
+* `terraform/`: Configuration files (`main.tf`) representing cloud infrastructure foundations.
+* `modelo_machine_learning.py`: Core production pipeline with integrated schema validation, logging, and dual execution modes (`--mode train` / `--mode predict`).
+* `test_pipeline.py`: Automated unit tests for data schema enforcement and mathematical exception handling.
+* `requirements.txt`: Pinpointed python dependencies for clean environment environment replication.
 
 ---
 
 ## Versión en Español
 
 ### Descripción del Proyecto
-Este proyecto implementa un pipeline avanzado de monitoreo de transacciones para la Prevención de Lavado de Dinero y Financiamiento al Terrorismo (PLD/FT). Al combinar los sistemas tradicionales basados en reglas con aprendizaje automático no supervisado (Clusterización K-Means), esta solución optimiza los flujos de auditoría financiera, reduce significativamente los falsos positivos, aísla perfiles conductuales anómalos y proporciona un tablero ejecutivo interactivo para la toma de decisiones operativas.
+Este proyecto implementa un pipeline de producción avanzado para el monitoreo de transacciones en la Prevención de Lavado de Dinero y Financiamiento al Terrorismo (PLD/FT). Al combinar los sistemas tradicionales con aprendizaje automático no supervisado (Clusterización K-Means), esta solución optimiza los flujos de auditoría financiera, reduce los falsos positivos, aísla perfiles conductuales anómalos y proporciona un despliegue e infraestructura automatizados bajo un enfoque DevSecOps.
 
 ### Problema Operativo
-Los sistemas tradicionales de monitoreo transaccional (como el marco heredado SICENA) generan altos volúmenes de alertas basados en umbrales rígidos y estáticos. Este enfoque produce una cantidad abrumadora de falsos positivos, lo que genera fatiga operativa en los analistas de cumplimiento y retrasa la identificación de delitos financieros complejos como la estructuración (smurfing).
+Los sistemas tradicionales de monitoreo transaccional generan altos volúmenes de alertas basados en umbrales rígidos y estáticos. Este enfoque produce una cantidad abrumadora de falsos positivos, lo que genera fatiga operativa en los analistas de cumplimiento y retrasa la identificación de delitos financieros complejos como la estructuración (smurfing).
 
 ### Arquitectura de la Solución
-El pipeline se compone de tres capas continuas:
-1. **Ingesta Basada en Reglas:** Simula la recepción de transacciones y dispara alertas preliminares basadas en umbrales regulatorios.
-2. **Optimización Analítica (Machine Learning):** Aplica un algoritmo no supervisado K-Means en Python para evaluar inconsistencias conductuales (discrepancias en efectivo, velocidad transaccional e ingresos mensuales declarados), segmentando a los usuarios en perfiles de riesgo especializados.
-3. **Visualización Ejecutiva y Mesa de Control:** Un tablero interactivo en Power BI conectado directamente a la salida del pipeline, permitiendo al Oficial de Cumplimiento filtrar datos dinámicamente por clúster y auditar perfiles específicos de clientes.
+El pipeline se compone de cuatro capas continuas:
+1. **Ingesta e Integridad:** Validación rigurosa de esquemas estructurales y procesamiento de datos transaccionales en memoria.
+2. **Optimización Analítica (Machine Learning):** Aplica un algoritmo no supervisado K-Means mediante Scikit-Learn para evaluar de manera vectorizada inconsistencias conductuales (discrepancias en efectivo, velocidad transaccional e ingresos mensuales declarados), aislando los perfiles en clústeres de riesgo específicos.
+3. **Robustez y DevSecOps (CI/CD):** Pruebas unitarias automatizadas con el framework `unittest` de Python para mitigar excepciones matemáticas críticas (como divisiones por cero en ingresos nulos) ejecutadas automáticamente en cada integración a través de GitHub Actions.
+4. **Infraestructura como Código (IaC):** Modelado declarativo de infraestructura en la nube (AWS S3) utilizando Terraform para garantizar el almacenamiento seguro y cifrado del Lago de Datos.
 
 ### Métricas Clave e Impacto de Negocio
-* **Reducción de Falsos Positivos:** Las alertas operativas que requerían revisión manual urgente se optimizaron a un lote priorizado de 492 casos, incrementando la eficiencia del equipo de análisis.
-* **Capital Bajo Investigación:** Aislamiento y seguimiento preciso de 188 millones de pesos mexicanos distribuidos en clústeres anómalos.
-* **Concentración de Riesgo:** Identificación del Clúster 4 como grupo de alto riesgo, exponiendo perfiles inconsistentes (ej. estudiantes o desempleados) realizando depósitos estructurados en efectivo cercanos al límite regulatorio por montos superiores a los 41 millones de pesos.
+* **Optimización de Falsos Positivos:** Las alertas operativas de alto riesgo que requieren revisión manual urgente se redujeron y aislaron con precisión a un lote priorizado de **577 casos críticos** (Clúster 4).
+* **Mitigación de Riesgo de Estructuración:** Identificación precisa de usuarios con un comportamiento de depósitos fraccionados en efectivo cercanos a los límites de reporte regulatorio.
 
 ### Estructura del Repositorio
-* `data/`: Contiene los conjuntos de datos sintéticos transaccionales y registros KYC (Know Your Customer).
-* `notebooks/`: Jupyter Notebook con el Análisis Exploratorio de Datos (EDA) y el entrenamiento del modelo K-Means.
-* `src/`: Scripts modulares de Python para la limpieza, ingeniería de variables y asignación de clústeres.
-* `dashboard/`: Archivo de Power BI Desktop (.pbix) que contiene la mesa de control interactiva de auditoría.
+* `.github/workflows/`: Contiene `devsecops_pipeline.yml` para la ejecución automática de pruebas y escaneo estático de seguridad de código (Bandit).
+* `data_sintetica/`: Almacena los datasets de entrada, las salidas analíticas optimizadas y los archivos binarios del modelo persistido (`scaler.pkl`, `kmeans_model.pkl`).
+* `graficas/`: Contiene recursos visuales y el archivo de mesa de control interactiva (`Mesa_Control_PLD.pbix`).
+* `terraform/`: Archivos de configuración (`main.tf`) para la provisión de la infraestructura en AWS.
+* `modelo_machine_learning.py`: Script principal de producción con logging profesional, validación de esquemas y modos de ejecución (`--mode train` / `--mode predict`).
+* `test_pipeline.py`: Suite de pruebas unitarias automatizadas para la verificación matemática y de esquema.
+* `requirements.txt`: Lista explícita de dependencias de Python para asegurar la replicabilidad del entorno virtual.
